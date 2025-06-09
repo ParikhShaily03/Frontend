@@ -1,0 +1,22 @@
+  <div class="sidebar" [class.open]="isSidebarOpen">
+    <a *ngIf="!isLoggedIn()" routerLink="/register" routerLinkActive="active">Register</a>
+    <a *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
+    <!-- <a *ngIf="!isLoggedIn()" routerLink="/MenuManagement" routerLinkActive="active">MenuManagement</a> -->
+
+    <app-menu></app-menu>
+  
+  <div class="Logout">
+      <a *ngIf="isLoggedIn()" routerLink="/logout" routerLinkActive="active">Logout</a>
+  </div>
+  </div>
+
+
+  <button class="toggle-btn" (click)="toggleSidebar()">☰</button>
+
+  <div class="container" [class.shifted]="isSidebarOpen">
+  <div class="header">
+    <app-notification-button *ngIf="isLoggedIn()"></app-notification-button>
+    
+  </div>
+  <router-outlet></router-outlet>
+</div>

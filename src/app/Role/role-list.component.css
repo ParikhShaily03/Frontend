@@ -1,0 +1,188 @@
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Heading */
+  .container h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  /* Top controls (Search + Sort + Add) */
+  .top-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Search input */
+  .search-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Sort and Add buttons */
+  .sort-btn,
+  .add-btn {
+    padding: 0.45rem 1rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .sort-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #bbb;
+  }
+  
+  .sort-btn:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .add-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+  }
+  
+  .add-btn:hover {
+    background-color: #218838;
+  }
+  
+  /* Form layout */
+  form .input-group {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  form input.form-control {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  form button {
+    padding: 0.45rem 1rem;
+    border-radius: 8px;
+    border: none;
+    transition: background-color 0.2s ease;
+  }
+  
+  form .btn-primary {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  form .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  form .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  form .btn-secondary:hover {
+    background-color: #5a6268;
+  }
+  
+  /* Error message */
+  .text-danger {
+    font-size: 0.875rem;
+    color: #dc3545;
+  }
+  
+  /* Table styling */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .table th,
+  .table td {
+    text-align: center;
+    padding: 0.75rem;
+    border: 1px solid #dee2e6;
+  }
+  
+  .table thead {
+    background-color: #f8f9fa;
+    font-weight: 600;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Responsive layout */
+  @media (max-width: 768px) {
+    .top-controls {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .search-input,
+    .sort-btn,
+    .add-btn {
+      width: 100%;
+    }
+  
+    form .input-group {
+      flex-direction: column;
+    }
+  
+    form button {
+      width: 100%;
+    }
+  }
+  /* Button spacing and clean style */
+.btn {
+    font-weight: 500;
+    border-radius: 6px;
+    padding: 5px 12px;
+    margin-right: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  /* Edit Button: Subtle Blue Outline */
+  .btn-outline-primary {
+    background-color: #3b82f6; /* blue-500 */
+    color: #fff;
+    padding: 0.35rem 0.75rem;
+    margin-right: 0.5rem; 
+  }
+  .btn-outline-primary:hover {
+    background-color: #98bbf1;
+    color: white;
+  }
+  
+  /* Delete Button: Subtle Red Outline */
+  .btn-outline-danger {
+    background-color: #bb3c3c; /* red-500 */
+    color: #fff;
+    padding: 0.35rem 0.75rem;
+  }
+  .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+  }
+  

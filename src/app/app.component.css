@@ -1,0 +1,111 @@
+
+/* Sidebar */
+
+.sidebar {
+   
+    position: fixed;
+    top: 0;
+    left: -240px;
+    width: 240px;
+    height: 100vh;
+    background-color: #1e293b; /* slate-800 */
+    color: #cbd5e1; /* slate-300 */
+    padding-top: 60px;
+    transition: left 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  
+    
+  }
+  
+  .sidebar.open {
+    left: 0;
+  }
+  
+  .sidebar a {
+    color: #cbd5e1; /* slate-300 */
+    text-decoration: none;
+    padding: 1rem 2rem;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: 500;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar a:hover,
+  .sidebar a.active {
+    background-color: #334155; /* slate-700 */
+    color: #38bdf8; /* sky-400 */
+  }
+  
+  /* Toggle Button */
+  .toggle-btn {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background-color: #0f172a; /* slate-900 */
+    color: #38bdf8; /* sky-400 */
+    border: none;
+    padding: 0.6rem 1rem;
+    font-size: 1.4rem;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 1100;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+  }
+  
+  .toggle-btn:hover {
+    background-color: #1e293b; /* slate-800 */
+  }
+  
+  /* Content */
+  .container {
+    transition: margin-left 0.3s ease-in-out;
+    padding: 2rem;
+    margin-left: 0;
+  }
+  
+  .container.shifted {
+    margin-left: 240px;
+  }
+  
+  /* Optional: Body background */
+  body {
+    background-color: #f8fafc; /* slate-50 */
+    color: #0f172a; /* slate-900 */
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+  }
+
+  /* Make sure .Logout is pushed to the bottom */
+.Logout {
+  margin-top: 10px;
+  padding-top: 10px;
+  padding: 1rem 1rem;
+
+}
+
+.Logout a {
+  display: block;
+  background-color: hsl(202, 77%, 47%); /* red-500 */
+  color: #ffffff; /* white text */
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.Logout a:hover {
+  background-color: #334155;
+  color: #38bdf8;
+}
+
+
+  
+  

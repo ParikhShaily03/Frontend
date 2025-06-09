@@ -1,0 +1,31 @@
+<div class="container mt-4">
+    
+  
+    <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
+      <h2>Edit User</h2>
+      <div class="mb-3">
+        <label>Name</label>
+        <input type="text" class="form-control" formControlName="name" />
+      </div>
+  
+      <div class="mb-3">
+        <label>Username</label>
+        <input type="text" class="form-control" formControlName="userName" />
+      </div>
+  
+      <div class="mb-3">
+        <label>Email</label>
+        <input type="email" class="form-control" formControlName="email" />
+      </div>
+  
+      <div class="mb-3">
+        <label>Department</label>
+        <input type="text" class="form-control" formControlName="department" />
+      </div>
+  
+      <button type="submit" class="btn btn-success" [disabled]="editUserForm.invalid">
+        Save Changes
+      </button>
+    </form>
+  </div>
+  

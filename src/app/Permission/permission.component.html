@@ -1,0 +1,51 @@
+
+
+<div class="permission-container">
+  <h2>Permission Management</h2>
+
+  <label for="roleSelect">Select Role:</label>
+  <select
+    id="roleSelect"
+    [(ngModel)]="selectedRoleId"
+    (change)="onRoleSelect()"
+  >
+    <option *ngFor="let role of roles" [value]="role.id">
+      {{ role.name }}
+    </option>
+  </select>
+
+ 
+  <div *ngIf="selectedRoleId">
+    <h3>Current Permissions</h3>
+    <ul>
+      <li *ngFor="let permission of currentPermissions">
+        {{ permission.name }}
+        <button (click)="removePermission(permission)">Remove</button>
+      </li>
+    </ul>
+
+    <h3>Assign Permissions</h3>
+    <div class="permission-checkboxes">
+      <label class="styled-checkbox" *ngFor="let permission of allPermissions">
+        <input
+          #cb
+          type="checkbox"
+        
+          [disabled]="isPermissionSelected(permission.id)"
+          (change)="onPermissionToggle(permission, cb.checked)"
+          [checked]="isPermissionSelected(permission.id)"
+        />
+        <span class="custom-checkbox"></span>
+        {{ permission.name }}
+      </label>
+    </div>
+
+    <br />
+    <button class="assign-btn" (click)="assignPermissions()">Assign Selected</button>
+    <button class="cancel-btn" (click)="cancel()">Cancel</button>
+    
+
+  </div>
+
+ 
+</div>

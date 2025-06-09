@@ -1,0 +1,337 @@
+<div class="container">
+  <h2>User List</h2>
+
+  <div class="search-add-wrapper mb-3">
+    <input
+      type="text"
+      class="form-control search-input"
+      placeholder="Search users..."
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="onSearchChange($event)"
+    />
+    <button
+      class="btn btn-success"
+      [routerLink]="['/add-user']"
+      *ngIf="hasPermission('Edit')"
+    >
+      Add User
+    </button>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+
+        <th>
+          <div class="filter-header">
+            <div (click)="onSort('Name')" style="cursor: pointer">
+              Name
+              <span [ngClass]="{ active: sortField === 'Name' }">
+                {{
+                  sortField === "Name" ? (sortOrder === "asc" ? "▲" : "▼") : "⇅"
+                }}
+              </span>
+            </div>
+            <div class="filter-container">
+              <button
+                class="btn btn-sm btn-filter"
+                  (click)="toggleColumnFilter('name', $event)"
+                
+              >
+                <i class="bi bi-funnel"></i>
+              </button>
+              <div
+                class="column-filter"
+                *ngIf="showColumnFilter === 'name'"
+                (click)="$event.stopPropagation()"
+                  data-column="name"
+              >
+                <select
+                  [(ngModel)]="tempFilters.name.operator"
+                  class="form-control-sm"
+                >
+                  <option value="contains">Contains</option>
+                  <option value="equals">Equals</option>
+                  <option value="notcontains">Not Contains</option>
+                  <option value="startswith">Starts With</option>
+                  <option value="endswith">Ends With</option>
+                </select>
+                <input
+                  type="text"
+                  class="form-control-sm"
+                  [(ngModel)]="tempFilters.name.value"
+                  (keyup.enter)="applyFilters()"
+                  placeholder="Filter name..."
+                />
+
+                <div class="filter-buttons mt-2">
+                  <button
+                    class="btn btn-primary btn-sm"
+                    (click)="applyFilters()"
+                  >
+                    Apply
+                  </button>
+                  <button
+                    class="btn btn-secondary btn-sm"
+                    (click)="clearFilter('name')"
+                  >
+                    Clear
+                  </button>
+                  <button class="btn btn-light btn-sm" (click)="cancelFilter()">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </th>
+
+        <th>
+          <div class="filter-header">
+            <div (click)="onSort('UserName')" style="cursor: pointer">
+              Username
+              <span [ngClass]="{ active: sortField === 'UserName' }">
+                {{
+                  sortField === "UserName"
+                    ? sortOrder === "asc"
+                      ? "▲"
+                      : "▼"
+                    : "⇅"
+                }}
+              </span>
+            </div>
+            <div class="filter-container">
+              <button
+                class="btn btn-sm btn-filter"
+                  (click)="toggleColumnFilter('userName', $event)"
+              >
+                <i class="bi bi-funnel"></i>
+              </button>
+              <div
+                class="column-filter"
+                *ngIf="showColumnFilter === 'userName'"
+                (click)="$event.stopPropagation()"
+              >
+                <select
+                  [(ngModel)]="tempFilters.userName.operator"
+                  class="form-control-sm"
+                >
+                  <option value="contains">Contains</option>
+                  <option value="equals">Equals</option>
+                  <option value="notcontains">Not Contains</option>
+                  <option value="startswith">Starts With</option>
+                  <option value="endswith">Ends With</option>
+                </select>
+                <input
+                  type="text"
+                  class="form-control-sm"
+                  [(ngModel)]="tempFilters.userName.value"
+                  (keyup.enter)="applyFilters()"
+                  placeholder="Filter userName..."
+                />
+
+                <div class="filter-buttons mt-2">
+                  <button
+                    class="btn btn-primary btn-sm"
+                    (click)="applyFilters()"
+                  >
+                    Apply
+                  </button>
+                  <button
+                    class="btn btn-secondary btn-sm"
+                    (click)="clearFilter('userName')"
+                  >
+                    Clear
+                  </button>
+                  <button class="btn btn-light btn-sm" (click)="cancelFilter()">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </th>
+
+        <th>
+          <div class="filter-header">
+            <div (click)="onSort('Email')" style="cursor: pointer">
+              Email
+              <span [ngClass]="{ active: sortField === 'Email' }">
+                {{
+                  sortField === "Email"
+                    ? sortOrder === "asc"
+                      ? "▲"
+                      : "▼"
+                    : "⇅"
+                }}
+              </span>
+            </div>
+            <div class="filter-container">
+              <button
+                class="btn btn-sm btn-filter"
+                  (click)="toggleColumnFilter('email', $event)"
+                
+              >
+                <i class="bi bi-funnel"></i>
+              </button>
+               <div
+                class="column-filter"
+                *ngIf="showColumnFilter === 'email'"
+                (click)="$event.stopPropagation()"
+              >
+                <select
+                  [(ngModel)]="tempFilters.email.operator"
+                  class="form-control-sm"
+                >
+                  <option value="contains">Contains</option>
+                  <option value="equals">Equals</option>
+                  <option value="notcontains">Not Contains</option>
+                  <option value="startswith">Starts With</option>
+                  <option value="endswith">Ends With</option>
+                </select>
+                <input
+                  type="text"
+                  class="form-control-sm"
+                  [(ngModel)]="tempFilters.email.value"
+                  (keyup.enter)="applyFilters()"
+                  placeholder="Filter email..."
+                />
+
+                <div class="filter-buttons mt-2">
+                  <button
+                    class="btn btn-primary btn-sm"
+                    (click)="applyFilters()"
+                  >
+                    Apply
+                  </button>
+                  <button
+                    class="btn btn-secondary btn-sm"
+                    (click)="clearFilter('email')"
+                  >
+                    Clear
+                  </button>
+                  <button class="btn btn-light btn-sm" (click)="cancelFilter()">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </th>
+
+        <th>Department</th>
+
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.userName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.department || "N/A" }}</td>
+
+        <td class="action-buttons">
+          <button
+            class="edit"
+            (click)="editUser(user.id!)"
+            *ngIf="hasPermission('Edit')"
+          >
+            <i class="bi bi-pencil-square"></i> Edit
+          </button>
+          <button
+            class="Delete"
+            (click)="softDelete(user.id!)"
+            *ngIf="hasPermission('Delete')"
+          >
+            <i class="bi bi-trash"></i> Delete
+          </button>
+
+          <div
+            class="dropdown-Events"
+            *ngIf="hasPermission('AccessPermission')"
+            (click)="$event.stopPropagation()"
+          >
+            <button
+              class="btn btn-light dropdown-toggle px-2 py-1"
+              type="button"
+              (click)="toggleOptions(user.id!)"
+            >
+              <i class="bi bi-three-dots-vertical"></i>
+            </button>
+
+            <div
+              class="dropdown-menu show mt-1"
+              *ngIf="isOptionsVisible(user.id!)"
+              style="position: absolute; z-index: 1000"
+            >
+              <button
+                class="dropdown-item"
+                (click)="openRoleModal(user); toggleOptions(user.id!)"
+              >
+                <i class="bi bi-person-gear"></i> Assign Role
+              </button>
+              <button
+                class="dropdown-item"
+                (click)="openMimicModal(user.userName); toggleOptions(user.id!)"
+              >
+                <i class="bi bi-person-gear"></i> Mimic
+              </button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-mimic-user
+    *ngIf="selectedUserToMimic"
+    [username]="selectedUserToMimic"
+    (closed)="closeMimicModal()"
+  >
+  </app-mimic-user>
+
+  <app-pagination
+    [totalCount]="totalCount"
+    [pageSize]="pageSize"
+    [currentPage]="currentPage"
+    (pageChange)="onPageChange($event)"
+    (pageSizeChange)="onPageSizeChange($event)"
+  >
+  </app-pagination>
+
+  <div *ngIf="selectedUser" class="modal-overlay">
+    <div class="modal-content">
+      <h4>Assign Role to {{ selectedUser.name }}</h4>
+
+      <select [(ngModel)]="selectedRole" class="form-control mb-2">
+        <option *ngFor="let role of roles" [value]="role.id">
+          {{ role.name }}
+        </option>
+      </select>
+
+      <button class="btn btn-success" (click)="assignRole()">Assign</button>
+
+      <hr />
+
+      <h5>Assigned Roles:</h5>
+      <ul class="list-group mb-2">
+        <li
+          *ngFor="let role of userRoles"
+          class="list-group-item d-flex justify-content-between align-items-center"
+        >
+          {{ role.name }}
+          <button class="btn btn-danger btn-sm" (click)="removeRole(role)">
+            Remove
+          </button>
+          <!-- (click)="removeRole(role)" -->
+        </li>
+      </ul>
+
+      <button class="btn btn-secondary" (click)="closeRoleModal()">
+        Close
+      </button>
+    </div>
+  </div>
+</div>

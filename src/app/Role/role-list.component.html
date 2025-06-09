@@ -1,0 +1,66 @@
+<div class="container mt-4">
+    <h2>Role Management</h2>
+
+    <!-- 🔍 Search & Sort Controls -->
+    <div class="top-controls">
+      <input
+        type="text"
+        class="form-control search-input"
+        placeholder="Search roles..."
+        [(ngModel)]="searchTerm"
+        (input)="onSearch()"
+      />
+      <button class="btn btn-outline-secondary sort-btn" (click)="toggleSort()">
+        {{ descending ? '⬇' : '⬆' }}
+      </button>
+      <button class="btn btn-success add-btn" (click)="showAddForm()" *ngIf="!showForm">ADD</button>
+    </div>
+    
+
+    <!-- Add Role Button -->
+    <!-- <button class="btn btn-success mb-3" (click)="showAddForm()" *ngIf="!showForm">ADD</button> -->
+
+    <!-- Role Form -->
+    <form *ngIf="showForm" [formGroup]="roleForm" (ngSubmit)="submit()" class="mb-3">
+      <div class="input-group">
+        <input
+          formControlName="roleName"
+          type="text"
+          class="form-control"
+          placeholder="Enter role name"
+        />
+        <button class="btn btn-primary" type="submit">
+          {{ editMode ? 'Update' : 'Add' }}
+        </button>
+        <button type="button" class="btn btn-secondary ms-2" (click)="resetForm()">Cancel</button>
+      </div>
+      <div *ngIf="roleForm.get('roleName')?.invalid && roleForm.get('roleName')?.touched" class="text-danger mt-1">
+        Role name is required
+      </div>
+    </form>
+  
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let role of roles; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ role.name }}</td>
+          <td>
+            <button class="btn btn-outline-primary btn-sm me-2" (click)="editRole(role)" title="Edit Role">
+              <i class="bi bi-pencil-square"></i> Edit
+            </button>
+            <button class="btn btn-outline-danger btn-sm" (click)="deleteRole(role.id)" title="Delete Role">
+              <i class="bi bi-trash"></i> Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

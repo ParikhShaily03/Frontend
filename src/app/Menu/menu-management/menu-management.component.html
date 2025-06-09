@@ -1,0 +1,159 @@
+<div class="menu-management">
+  <h2>Menu Management</h2>
+
+ <button 
+    (click)="showCreateForm()" 
+    class="create-btn"
+   *ngIf="canCreateMenu( )" 
+   >
+    <i class="fa fa-plus"></i> Create Menu
+  </button>
+
+  <div class="menu-form-wrapper" [class.visible]="showForm">
+    <div class="menu-form">
+      <h3>{{ isEditing ? "Edit Menu" : "Create Menu" }}</h3>
+
+      <form [formGroup]="menuForm" (ngSubmit)="onSubmit()">
+        <!-- form fields (unchanged) -->
+        <input formControlName="title" placeholder="Title" required />
+        <input formControlName="url" placeholder="URL" />
+        <input formControlName="icon" placeholder="Icon" />
+        <input
+          formControlName="parentId"
+          placeholder="Parent ID"
+          type="number"
+        />
+        <label
+          ><input type="checkbox" formControlName="isActive" /> Is Active</label
+        >
+        <label
+          ><input type="checkbox" formControlName="isSubMenu" /> Is
+          SubMenu</label
+        >
+        <label
+          ><input type="checkbox" formControlName="isExternal" /> Is
+          External</label
+        >
+        <input formControlName="target" placeholder="Target" />
+        <input formControlName="cssClass" placeholder="CSS Class" />
+
+        <button type="submit">{{ isEditing ? "Update" : "Create" }}</button>
+        <button type="button" (click)="resetForm()">Cancel</button>
+      </form>
+
+       <!-- 👇 Add this block BELOW the form tag -->
+  
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>URL</th>
+        <th>Icon</th>
+        <th>Parent</th>
+        
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let menu of menus">
+        <tr>
+          <td>{{ menu.title }}</td>
+          <td>{{ menu.url }}</td>
+          <td>{{ menu.icon }}</td>
+          <td>{{ menu.parentMenuTitle || "None" }}</td>
+         
+ 
+
+
+         
+          <td>
+                        <button 
+              class="edit-btn" 
+              (click)="editMenu(menu)"
+               *ngIf="canEditMenu(menu.id)"
+               >
+              <i class="fa fa-pencil"> Edit</i>
+            </button>
+
+            <button 
+              class="delete-btn" 
+              (click)="deleteMenu(menu.id)"
+              *ngIf="canDeleteMenu(menu.id)"
+              
+               
+             >
+              <i class="fa fa-trash"></i> Delete
+            </button>
+<button class="assign-btn" (click)="openRolePermissionEditor(menu.id)" *ngIf="canManagePermissions(menu.id)">
+  Assign Role Permissions
+</button>
+
+
+
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+ <!-- Overlay shown when the form is open -->
+<!-- Update your role-permission-form in menu-management.component.html -->
+<div *ngIf="showRolePermissionForm" class="overlay">
+  <div class="role-permission-form">
+    <h3>Manage Role Permissions for Menu ID: {{ selectedMenuId }}</h3>
+
+    <label for="roleSelect">Select Role:</label>
+    <select 
+      id="roleSelect" 
+      [(ngModel)]="selectedRoleId"
+      (change)="onRoleSelect(selectedRoleId)"
+    >
+      <option [value]="null" disabled selected>Select a role</option>
+      <option *ngFor="let role of roles" [value]="role.id">
+        {{ role.name }}
+      </option>
+    </select>
+
+    <div *ngIf="selectedRoleId">
+      <h4>Current Permissions:</h4>
+      <div *ngIf="selectedPermissions.length > 0; else noPermissions">
+       <!-- Change how you display permissions -->
+<div *ngFor="let perm of selectedPermissions" class="permission-item">
+  {{ getPermissionName(perm) }}
+  <button (click)="removePermission(perm)">Remove</button>
+</div>
+      </div>
+      <ng-template #noPermissions>
+        <p>No permissions assigned for this role.</p>
+      </ng-template>
+
+      <h4>Add New Permissions:</h4>
+      <div *ngFor="let perm of filteredPermissions" class="permission-item">
+        <label>
+          <input
+            type="checkbox"
+            [value]="perm.value"
+            (change)="onPermissionChange($event, perm.value)"
+            [checked]="selectedPermissions.includes(perm.value)"
+            [disabled]="selectedPermissions.includes(perm.value)"
+          />
+          {{ perm.key }}
+        </label>
+      </div>
+
+      <div class="form-actions">
+        <button (click)="assignRolePermissions()">Save Changes</button>
+        <button 
+          *ngIf="selectedPermissions.length > 0"
+          (click)="removeAllPermissions()"
+          class="remove-all-btn"
+        >
+          Remove All Permissions
+        </button>
+        <button (click)="closeRolePermissionEditor()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

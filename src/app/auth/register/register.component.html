@@ -1,0 +1,34 @@
+<div class="register-container">
+  <div class="register-box">
+   
+    <form [formGroup]="form" (ngSubmit)="submit()">
+       <!-- Logo -->
+      <img src="https://t4.ftcdn.net/jpg/11/95/02/03/240_F_1195020310_6VRXUyP1TqbI5ssiUQOhFqiQdm7HPqN9.jpg" 
+      alt="App Logo" 
+      class="logo" />
+      <h3>Register</h3>
+      <input type="text" formControlName="userName" placeholder="Username" />
+      <div *ngIf="form.get('userName')?.touched && form.get('userName')?.invalid" class="error-message">
+        Username is required.
+      </div>
+
+      <input type="text" formControlName="name" placeholder="Full Name" />
+      <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid" class="error-message">
+        Full name is required.
+      </div>
+
+      <input type="email" formControlName="email" placeholder="Email" />
+      <div *ngIf="form.get('email')?.touched && form.get('email')?.errors as errors" class="error-message">
+        <div *ngIf="errors['required']">Email is required.</div>
+        <div *ngIf="errors['email']">Enter a valid email address.</div>
+      </div>
+
+      <input type="password" formControlName="password" placeholder="Password" />
+      <div *ngIf="form.get('password')?.touched && form.get('password')?.invalid" class="error-message">
+        Password is required.
+      </div>
+
+      <button type="submit" [disabled]="form.invalid">Register</button>
+    </form>
+  </div>
+</div>

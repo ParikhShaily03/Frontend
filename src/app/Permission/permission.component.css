@@ -1,0 +1,144 @@
+.permission-container {
+    padding: 2rem;
+    max-width: 600px;
+    margin: 2rem auto;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .permission-container h2,
+  .permission-container h3 {
+    text-align: center;
+    color: #0f172a;
+    margin-bottom: 1.5rem;
+  }
+  
+  .permission-container h3 {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+  }
+  
+  .permission-container label {
+    display: block;
+    font-weight: 500;
+    color: #334155;
+    margin-bottom: 0.5rem;
+  }
+  
+  .permission-container select {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .permission-container select:focus {
+    border-color: #38bdf8;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+  }
+  
+  .permission-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .permission-container li {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .permission-container button {
+    background-color: #3b82f6; /* Blue */
+    border: none;
+    color: white;
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .permission-container button:hover {
+    background-color: #2563eb; /* Darker blue on hover */
+  }
+  .permission-checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    width: 100%;
+  }
+  
+  .permission-checkboxes label {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    width: 95%;
+    font-weight: 500;
+    color: #334155;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .permission-checkboxes {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-align rows */
+    gap: 0.5rem;
+    width: 100%;
+  }
+   
+  
+.permission-checkboxes input[type="checkbox"] {
+    margin-right: 0.75rem;
+  }
+  
+  /* Center the Assign button under the checkbox list */
+  .permission-container .assign-btn {
+    display: block;
+    margin: 1.5rem auto 0 auto;
+  }
+  
+  .cancel-btn {
+    margin-left: 10px;
+    background-color: #e0e0e0;
+    border: none;
+    width: 100%;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    display: block;
+    margin: 10px auto 0 auto;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #d5d5d5;
+  }
+  
+ 
+  @media (max-width: 600px) {
+    .permission-container .assign-btn {
+      width: 100%;
+    }
+  }
+  
+    .permission-container .assign-btn {
+      width: 100%;
+    }
+  

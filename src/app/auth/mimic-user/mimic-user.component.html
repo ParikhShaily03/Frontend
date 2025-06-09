@@ -1,0 +1,23 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">Mimic User</h2>
+    </div>
+
+    <div class="modal-body">
+      <p class="modal-message">
+        <i class="bi bi-person-circle text-blue-600 text-xl mr-2"></i>
+         Are you sure you want to mimic <strong>{{ username }}</strong>?
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="closeModal()">
+        <i class="bi bi-x-circle"></i> Cancel
+      </button>
+      <button class="btn btn-primary" (click)="confirmMimic()">
+        <i class="bi bi-check-circle"></i> Yes, Mimic
+      </button>
+    </div>
+  </div>
+</div>

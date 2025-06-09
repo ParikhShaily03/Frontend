@@ -1,0 +1,361 @@
+.menu-management {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.menu-management h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.create-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.create-btn:hover {
+  background-color: #45a049;
+}
+
+.create-btn i {
+  margin-right: 5px;
+}
+
+.menu-form-wrapper {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-form-wrapper.visible {
+  display: flex;
+}
+
+.menu-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu-form h3 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.menu-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu-form input[type="text"],
+.menu-form input[type="number"] {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.menu-form label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.menu-form button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.menu-form button[type="submit"] {
+  background-color: #2196F3;
+  color: white;
+}
+
+.menu-form button[type="submit"]:hover {
+  background-color: #0b7dda;
+}
+
+.menu-form button[type="button"] {
+  background-color: #f44336;
+  color: white;
+}
+
+.menu-form button[type="button"]:hover {
+  background-color: #da190b;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th, table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.edit-btn, .delete-btn, .assign-btn {
+  padding: 10px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-right: 5px;
+}
+
+.edit-btn {
+  background-color: #5cadef;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #104774;
+}
+
+.delete-btn {
+  background-color: #c24d44;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #e5918b;
+}
+
+.assign-btn {
+  background-color: #6d8eae;
+  color: white;
+}
+
+.assign-btn:hover {
+  background-color: #9b9790;
+}
+
+.role-badge {
+  display: inline-block;
+  background-color: #e1f5fe;
+  color: #0288d1;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.role-badge i {
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.role-badge i:hover {
+  color: #d32f2f;
+}
+
+.role-assignment-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.role-assignment-modal.visible {
+  display: flex;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.modal-content div {
+  margin: 10px 0;
+}
+
+.modal-content label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.modal-content button {
+  padding: 8px 15px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.modal-content button:first-of-type {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.modal-content button:first-of-type:hover {
+  background-color: #45a049;
+}
+
+.modal-content button:last-of-type {
+  background-color: #f44336;
+  color: white;
+}
+
+.modal-content button:last-of-type:hover {
+  background-color: #da190b;
+}
+/* New css for role */
+
+/* Fullscreen background overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* dim background */
+  backdrop-filter: blur(4px); /* blur background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Form container */
+.role-permission-form {
+  width: 100%;
+  max-width: 450px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  z-index: 1001;
+}
+
+/* Heading */
+.role-permission-form h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.25rem;
+}
+
+/* Labels */
+.role-permission-form label {
+  display: block;
+  margin: 0.5rem 0 0.25rem;
+  font-weight: 600;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+/* Select box */
+.role-permission-form select {
+  width: 100%;
+  padding: 0.4rem 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  font-size: 1rem;
+  outline-color: #007bff;
+}
+
+/* Checkboxes */
+.role-permission-form div > input[type="checkbox"] {
+  margin-right: 0.5rem;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.role-permission-form div {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: #444;
+  user-select: none;
+}
+
+/* Buttons */
+.role-permission-form button {
+  margin-top: 1rem;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  margin-right: 0.5rem;
+}
+
+.role-permission-form button:first-of-type {
+  background-color: #007bff;
+  color: white;
+}
+
+.role-permission-form button:first-of-type:hover {
+  background-color: #0056b3;
+}
+
+.role-permission-form button:last-of-type {
+  background-color: #ccc;
+  color: #333;
+}
+
+.role-permission-form button:last-of-type:hover {
+  background-color: #999;
+}

@@ -1,0 +1,18 @@
+
+<nav *ngIf="parentMenus.length > 0">
+    <ul>
+      <li *ngFor="let menu of parentMenus">
+        <a [routerLink]="menu.url"  class="menu-link"> <i [class]="menu.icon" class="menu-icon"></i>{{ menu.title }}</a>
+       
+        <ul *ngIf="menu.children?.length > 0">
+          <li *ngFor="let sub of menu.children">
+            <a [routerLink]="sub.url">{{ sub.title }}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    
+  </nav>
+
+  
+  
