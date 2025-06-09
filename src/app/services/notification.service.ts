@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { BehaviorSubject } from 'rxjs';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
+import { environment } from '../../environment/environment.prod';
 
 export interface Notification {
   id: number;
@@ -17,7 +18,8 @@ export interface Notification {
   providedIn: 'root'
 })
 export class NotificationService {
-  private notificationsUrl = 'https://localhost:7000/api/Notification';
+ // private notificationsUrl = 'https://localhost:7000/api/Notification';
+   private notificationsUrl = `${environment.apiUrl}/Notification`;
   private unreadCount = new BehaviorSubject<number>(0);
   unreadCount$ = this.unreadCount.asObservable();
   private notifications = new BehaviorSubject<Notification[]>([]);
