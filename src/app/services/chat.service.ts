@@ -3,8 +3,7 @@
   import { Observable, Subject } from 'rxjs';
   import { User } from '../data/user'; 
   import { environment } from '../../environment/environment.prod';
-import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
-import { AuthService } from './auth.service';
+import { HubConnection } from '@microsoft/signalr';
 
   // Define a model for the chat message
   export interface ChatMessage {
@@ -28,26 +27,9 @@ import { AuthService } from './auth.service';
   public messageReceived$ = this.messageReceived.asObservable();
 
 
-   
-  constructor(private http: HttpClient, private authService: AuthService) {
-    this.createConnection();
-  }
-    private createConnection() {
-    this.hubConnection = new HubConnectionBuilder()
-      .withUrl(`${environment.apiUrl}/hubs/chat`, {
-        accessTokenFactory: () => this.authService.getToken() || ''
-      })
-      .build();
+    constructor(private http: HttpClient) { }
 
-    this.hubConnection.start()
-      .then(() => console.log('Chat Hub Connection Started'))
-      .catch(err => console.error('Error starting chat hub connection: ', err));
-
-    this.hubConnection.on('ReceiveMessage', (message: ChatMessage) => {
-      this.messageReceived.next(message);
-    });
-
-  }
+    // Get messages with a specific user
     getMessages(userId: string): Observable<ChatMessage[]> {
       return this.http.get<ChatMessage[]>(`${this.apiUrl}/messages/${userId}`);
     }

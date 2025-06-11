@@ -11,7 +11,8 @@ import { interval, Subscription } from "rxjs";
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { environment } from "../../../environment/environment.prod"; 
 import { AuthService } from "../../services/auth.service";
-import { NotificationService } from "../../services/notification.service";
+
+
 @Component({
   selector: "app-chat",
   standalone: true,
@@ -28,14 +29,14 @@ export class ChatComponent implements OnInit,OnDestroy {
   toUserName: string = "";
   private pollingSubscription: Subscription | undefined;
     private hubConnection?: HubConnection;
+ private messageSub: Subscription | undefined;
 
 
   constructor(
     private chatService: ChatService,
     private route: ActivatedRoute,
     private userService: UserService,
-    private authService: AuthService,
-    private notificationService: NotificationService
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -43,15 +44,12 @@ export class ChatComponent implements OnInit,OnDestroy {
     this.userId = storedUserId ? JSON.parse(storedUserId) : "";
        this.setupSignalR();
     console.log("Logged-in user ID:", this.userId);
-      this.chatService.messageReceived$.subscribe((message: ChatMessage) => {
-      if (message.senderId === this.toUserId || message.receiverId === this.toUserId) {
-        this.messages.push(message);
-      } else {
-        // Show notification for new message from other users
-        this.notificationService.getNotifications();
-      }
-    });
 
+    this.messageSub = this.chatService.messageReceived$.subscribe(msg => {
+      // e.g., show a toast or popup
+      alert(`New message from ${msg.senderId}: ${msg.message}`);
+      // Or push to your message list
+    });
     this.chatService.getContacts().subscribe(
       (data) => {
         this.users = data.users;
@@ -64,15 +62,15 @@ export class ChatComponent implements OnInit,OnDestroy {
 
   ngOnDestroy(): void {
     this.stopPolling();
-    this.hubConnection?.stop();  // Disconnect SignalR on destroy
+    this.hubConnection?.stop();
+    this.messageSub?.unsubscribe();
   }
 
    private setupSignalR(): void {
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(`${environment.apiUrl}/hubs/chat`, {
-        accessTokenFactory: () => this.authService.getToken() || ''  // Replace with your auth token logic
-      })
-      .build();
+        accessTokenFactory: () => this.authService.getToken() || '' 
+      }).build();
 
     this.hubConnection.start()
       .then(() => console.log('SignalR Connected (Chat)'))

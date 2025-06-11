@@ -67,4 +67,5 @@ export class NotificationComponent implements OnInit, OnDestroy {
     isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
+  
 }

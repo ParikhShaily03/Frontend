@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { environment } from '../../environment/environment.prod';
 
@@ -24,31 +24,9 @@ export class NotificationService {
   unreadCount$ = this.unreadCount.asObservable();
   private notifications = new BehaviorSubject<Notification[]>([]);
   notifications$ = this.notifications.asObservable();
-   private newNotification = new Subject<Notification>();
-  public newNotification$ = this.newNotification.asObservable();
 
- private hubConnection?: HubConnection;
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-  constructor(private http: HttpClient, private authService: AuthService) {
-    this.createConnection();
-  }
-
-    private createConnection() {
-    this.hubConnection = new HubConnectionBuilder()
-      .withUrl(`${environment.apiUrl}/hubs/notifications`, {
-        accessTokenFactory: () => this.authService.getToken() || ''
-      })
-      .build();
-
-    this.hubConnection.start()
-      .then(() => console.log('Notification Hub Connection Started'))
-      .catch(err => console.error('Error starting notification hub connection: ', err));
-
-    this.hubConnection.on('ReceiveNotification', (notification: Notification) => {
-      this.newNotification.next(notification);
-      this.getNotifications(); // Refresh the list
-    });
-  }
   getNotifications() {
     this.http.get<Notification[]>(this.notificationsUrl).subscribe({
       next: (notifs) => {
