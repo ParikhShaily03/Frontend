@@ -159,9 +159,18 @@ setRefreshToken(token: string): void {
     localStorage.setItem('roleIds', JSON.stringify(roleIds));
   }
 
+  setUserId(userId: string) {
+    localStorage .setItem('userId', JSON.stringify(userId));
+  }
+
+
   getRoleIds(): string[] {
     const roleIdsJson = localStorage.getItem('roleIds');
     return roleIdsJson ? JSON.parse(roleIdsJson) : [];
+  }
+
+  getUserId(): any {
+  const token = localStorage.getItem('userId');  
   }
 
   setMenuPermissions(menuPermissions: {[menuId: number]: string[]}) {

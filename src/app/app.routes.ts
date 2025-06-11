@@ -15,6 +15,7 @@ import { UnauthoriseComponent } from './auth/Unauthorise/unauthorise.component';
  import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
  import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { MimicUserComponent } from './auth/mimic-user/mimic-user.component';
+import { ChatComponent } from './Chat/chat/chat.component';
 
 
 export const routes: Routes = [
@@ -96,5 +97,12 @@ export const routes: Routes = [
      canActivate: [authGuard],
      data: { permission: PermissionEnum.AccessPermission},
   },
+
+ {
+  path: 'chat',
+  component: ChatComponent,
+ },
+ 
+ 
  
 ];

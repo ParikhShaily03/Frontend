@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../environment/environment.prod';
 
 
 
@@ -36,7 +37,10 @@ export class NotificationComponent implements OnInit, OnDestroy {
 
   private setupSignalR() {
     this.hubConnection = new HubConnectionBuilder()
-      .withUrl('https://localhost:7000/notificationHub')
+      // .withUrl('https://localhost:7000/notificationHub')
+      .withUrl(`${environment.apiUrl}/hubs/notifications`, {
+              accessTokenFactory: () => this.authService.getToken() || ''
+            })
       .build();
 
     this.hubConnection.start()

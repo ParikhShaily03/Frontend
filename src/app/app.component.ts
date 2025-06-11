@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterModule } from '@angular/router';
+import { RouterOutlet, RouterModule, Router } from '@angular/router';
 //import { AuthService } from './services/auth.service';
 import { MenuComponent } from './Menu/DynamicMenu/menu.component';
 // import { MenuListComponent } from './Menu/menu-list.component';
@@ -20,7 +20,7 @@ export class AppComponent {
   isSidebarOpen = false;
  
 
-  constructor(public authService: AuthService) {} 
+  constructor(public authService: AuthService,private router:Router) {} 
 
 
   
@@ -31,6 +31,10 @@ export class AppComponent {
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
+
+  openChat() {
+  this.router.navigate(['/chat']);
+}
 
 
   

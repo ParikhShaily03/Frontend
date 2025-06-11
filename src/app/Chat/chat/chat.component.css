@@ -1,0 +1,166 @@
+/* Chat container */
+.chat-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: linear-gradient(to bottom right, #ffffff, #f9f9f9);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Heading */
+.chat-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* User dropdown */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #555;
+}
+
+select {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+select:focus {
+  border-color: #00b4d8;
+  box-shadow: 0 0 8px rgba(0, 180, 216, 0.4);
+  outline: none;
+}
+
+/* Chat heading */
+h3 {
+  margin-top: 1rem;
+  color: #444;
+  font-size: 1.2rem;
+  animation: slideIn 0.4s ease-in-out;
+}
+
+/* Message bubbles */
+.my-message, .other-message {
+  padding: 0.8rem 1rem;
+  border-radius: 20px;
+  margin: 0.5rem 0;
+  max-width: 75%;
+  animation: fadeInUp 0.4s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  word-wrap: break-word;
+  position: relative;
+}
+
+/* My message styling */
+.my-message {
+  background: linear-gradient(to right, #00b4d8, #90e0ef);
+  color: white;
+  margin-left: auto;
+  border-bottom-right-radius: 4px;
+}
+
+/* Other message styling */
+.other-message {
+  background: #f1f1f1;
+  color: #333;
+  margin-right: auto;
+  border-bottom-left-radius: 4px;
+}
+
+/* Small text */
+p small {
+  font-size: 0.75rem;
+  color: #777;
+}
+
+/* Status text */
+p {
+  margin: 0.25rem 0;
+}
+
+/* Mark as Read button */
+button {
+  background: #00b4d8;
+  color: white;
+  border: none;
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+button:hover {
+  background: #0096c7;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Message input */
+form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  align-items: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+input[type="text"]:focus {
+  border-color: #00b4d8;
+  box-shadow: 0 0 8px rgba(0, 180, 216, 0.4);
+  outline: none;
+}
+
+form button[type="submit"] {
+  background: linear-gradient(to right, #00b4d8, #90e0ef);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+form button[type="submit"]:hover {
+  background: linear-gradient(to right, #0096c7, #48cae4);
+  transform: translateY(-2px);
+}
+
+/* Horizontal separator */
+hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 0.5rem 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

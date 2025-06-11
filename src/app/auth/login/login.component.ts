@@ -53,7 +53,7 @@ const refreshtoken=res.data.refreshToken;
           this.auth.setPermissions(permissions);
           this.auth.setMenuPermissions(menuPermissions); 
           this.auth.setRefreshToken(refreshtoken)
-         
+         this.auth.setUserId(userId);
 
           this.router.navigate(['/users']);
         } else {

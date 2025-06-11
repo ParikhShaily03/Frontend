@@ -1,9 +1,9 @@
 /* Notification Container */
 .notification-container {
-  position: fixed;
-  top: 40;
-  right: 40px;
-  z-index: 1200;
+  position:absolute;
+  top: 50px;
+  right: 70px;
+  z-index: 5000;
 }
 
 /* Notification Button */

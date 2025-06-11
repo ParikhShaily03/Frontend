@@ -1,22 +1,41 @@
-  <div class="sidebar" [class.open]="isSidebarOpen">
-    <a *ngIf="!isLoggedIn()" routerLink="/register" routerLinkActive="active">Register</a>
-    <a *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
-    <!-- <a *ngIf="!isLoggedIn()" routerLink="/MenuManagement" routerLinkActive="active">MenuManagement</a> -->
+<div class="sidebar" [class.open]="isSidebarOpen">
+  <a *ngIf="!isLoggedIn()" routerLink="/register" routerLinkActive="active"
+    >Register</a
+  >
+  <a *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active"
+    >Login</a
+  >
 
-    <app-menu></app-menu>
-  
+  <!-- <a *ngIf="!isLoggedIn()" routerLink="/MenuManagement" routerLinkActive="active">MenuManagement</a> -->
+
+  <app-menu></app-menu>
+
   <div class="Logout">
-      <a *ngIf="isLoggedIn()" routerLink="/logout" routerLinkActive="active">Logout</a>
+    <a *ngIf="isLoggedIn()" routerLink="/logout" routerLinkActive="active"
+      >Logout</a
+    >
   </div>
-  </div>
+</div>
 
+<button class="toggle-btn" (click)="toggleSidebar()">☰</button>
 
-  <button class="toggle-btn" (click)="toggleSidebar()">☰</button>
-
-  <div class="container" [class.shifted]="isSidebarOpen">
+<div class="container" [class.shifted]="isSidebarOpen">
   <div class="header">
+    <div class="header-bar-alt">
+      <div class="header-title">WelCome</div>
     <app-notification-button *ngIf="isLoggedIn()"></app-notification-button>
-    
+      <div class="header-actions">
+        <button
+          class="chat-button-alt"
+          *ngIf="isLoggedIn()"
+          (click)="openChat()"
+        >
+          💬 
+        </button>
+      
+      </div>
+    </div>
   </div>
+ 
   <router-outlet></router-outlet>
 </div>

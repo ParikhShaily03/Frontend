@@ -1,0 +1,31 @@
+<div class="chat-container">
+  <h2>Chat</h2>
+
+  <!-- User dropdown -->
+  <label for="toUser">Select user to chat:</label>
+  <select id="toUser" [(ngModel)]="toUserId" (change)="onUserSelect()" name="toUserId" required>
+    <option value="">-- Select a user --</option>
+    <option *ngFor="let user of users" [value]="user.id">{{ user.userName }}</option>
+  </select>
+
+  <div *ngIf="toUserId">
+   <h3>Chat with {{ toUserName }}</h3>
+
+
+    <div *ngFor="let message of messages">
+      <div [ngClass]="{'my-message': message.senderId === userId, 'other-message': message.senderId !== userId}">
+        <p><strong>{{ message.senderId }}:</strong> {{ message.message }}</p>
+        <p><small>{{ message.sentAt | date:'short' }}</small></p>
+        <p>Status: {{ message.isRead ? 'Read' : 'Unread' }}</p>
+        <button *ngIf="!message.isRead" (click)="markAsRead(message.id)">Mark as Read</button>
+      </div>
+      <hr>
+    </div>
+
+    <!-- Message input -->
+    <form (ngSubmit)="sendMessage()">
+      <input type="text" [(ngModel)]="newMessage" name="messageText" placeholder="Type your message..." required>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>

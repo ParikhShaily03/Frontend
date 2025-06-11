@@ -11,6 +11,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { authInterceptor } from './app/interceptors/auth.interceptor';
 import { NotificationService } from './app/services/notification.service';
 
+
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes, withHashLocation()),
