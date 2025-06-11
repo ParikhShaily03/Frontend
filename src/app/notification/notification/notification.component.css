@@ -1,7 +1,7 @@
 /* Notification Container */
 .notification-container {
   position:absolute;
-  top: 50px;
+  top: 43px;
   right: 70px;
   z-index: 5000;
 }

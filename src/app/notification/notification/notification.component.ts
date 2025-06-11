@@ -47,9 +47,10 @@ export class NotificationComponent implements OnInit, OnDestroy {
       .then(() => console.log('SignalR Connected'))
       .catch(err => console.error('SignalR Connection Error: ', err));
 
-    this.hubConnection.on('ReceiveNotification', () => {
-      this.notificationService.getNotifications(); // Refresh notifications
-    });
+   this.hubConnection.on('ReceiveNotification', (data) => {
+  console.log('New Notification:', data);
+  this.notificationService.getNotifications(); // Refresh notifications
+});
   }
 
   toggleDropdown() {
