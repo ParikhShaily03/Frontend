@@ -5,6 +5,7 @@ import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../environment/environment.prod';
+import { interval, Subscription } from 'rxjs';
 
 
 
@@ -19,6 +20,8 @@ export class NotificationComponent implements OnInit, OnDestroy {
   showDropdown = false;
   private hubConnection?: HubConnection;
 
+  private pollingSubscription?: Subscription;
+
   constructor(
     public notificationService: NotificationService,
     private authService: AuthService
@@ -28,11 +31,13 @@ export class NotificationComponent implements OnInit, OnDestroy {
     if (this.authService.isLoggedIn()) {
       this.notificationService.getNotifications();
       this.setupSignalR();
+       this.startPolling();
     }
   }
 
   ngOnDestroy() {
     this.hubConnection?.stop();
+      this.stopPolling(); 
   }
 
   private setupSignalR() {
@@ -43,10 +48,12 @@ export class NotificationComponent implements OnInit, OnDestroy {
             })
       .build();
 
-    this.hubConnection.start()
-      .then(() => console.log('SignalR Connected'))
-      .catch(err => console.error('SignalR Connection Error: ', err));
-
+  this.hubConnection.start()
+  .then(() => console.log('SignalR Connected'))
+  .catch(err => {
+    console.error('SignalR Connection Error: ', err);
+    this.startPolling(); // fallback
+  });
    this.hubConnection.on('ReceiveNotification', (data) => {
   console.log('New Notification:', data);
   this.notificationService.getNotifications(); // Refresh notifications
@@ -67,5 +74,16 @@ export class NotificationComponent implements OnInit, OnDestroy {
     isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
+
+  startPolling(): void {
+  this.stopPolling();
+  this.pollingSubscription = interval(1000).subscribe(() => {
+    this.notificationService.getNotifications();
+  });
+}
+
+stopPolling(): void {
+  this.pollingSubscription?.unsubscribe();
+}
   
 }

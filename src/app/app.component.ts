@@ -6,11 +6,13 @@ import { MenuComponent } from './Menu/DynamicMenu/menu.component';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
 import { NotificationComponent } from "./notification/notification/notification.component";
+import { ChatButtonComponent } from './Chat/chat-button/chat-button.component';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, CommonModule, MenuComponent, NotificationComponent],
+  imports: [RouterOutlet, RouterModule, CommonModule, MenuComponent, NotificationComponent,ChatButtonComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -32,9 +34,6 @@ export class AppComponent {
     return this.authService.isLoggedIn();
   }
 
-  openChat() {
-  this.router.navigate(['/chat']);
-}
 
 
   

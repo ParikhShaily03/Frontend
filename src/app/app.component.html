@@ -24,16 +24,7 @@
     <div class="header-bar-alt">
       <div class="header-title">WelCome</div>
     <app-notification-button *ngIf="isLoggedIn()"></app-notification-button>
-      <div class="header-actions">
-        <button
-          class="chat-button-alt"
-          *ngIf="isLoggedIn()"
-          (click)="openChat()"
-        >
-          💬 
-        </button>
-      
-      </div>
+    <app-chat-button *ngIf="isLoggedIn()"></app-chat-button>
     </div>
   </div>
  

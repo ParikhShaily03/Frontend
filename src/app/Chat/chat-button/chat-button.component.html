@@ -1,0 +1,9 @@
+
+<div class="chat-button-container">
+  <button class="chat-button" (click)="openChat()">
+    💬
+    <span *ngIf="unreadCount > 0" class="badge">
+      {{ unreadCount }}
+    </span>
+  </button>
+</div>
